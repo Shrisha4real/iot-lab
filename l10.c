@@ -1,17 +1,13 @@
-#include<SoftwareSerial.h>
-/* Create object named bt of the class SoftwareSerial */
-SoftwareSerial bt(3,1); /* (Rx,Tx) */
+#define MQ135 15
 void setup() {
-	bt.begin(9600); /* Define baud rate for software serial communication */
-	Serial.begin(9600); /* Define baud rate for serial communication */
+// put your setup code here, to run once:
+pinMode(MQ135,INPUT);
+Serial.begin(9600);
 }
 void loop() {
-	if (bt.available()) /* If data is available on serial port */
-	{
-		Serial.write(bt.read()); /* Print character received on to the serial monitor */
-	}
-	if(Serial.available())
-	{
-		bt.write(serial.read());
-	}
+// put your main code here, to run repeatedly:
+int val=analogRead(MQ135);
+Serial.print("Gas Value = ");
+Serial.println(val);
+delay(1000);
 }
